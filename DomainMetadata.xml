@@ -1,0 +1,1269 @@
+<!--
+Tables removed:
+  BellScheduleCalendarDate
+  BellScheduleGradeLevel
+  DisciplineIncidentSecondaryBehavior
+  InterventionDiagnosisType
+  ReportCardStudentCompetenceyLearningObjective
+  StudentDisciplineIncidentSecondaryBehavior
+  StudentHomeLanguage
+
+Tables added:
+  Achievement
+  AchievementCategoryDescriptor
+  AssessmentContentStandardAuthor
+  AssessmentFamiliyLanguages
+  AssessmentFamilyContentStandardAuthor
+  AssessmentLanguages
+  AssessmentProgram
+  CitizenshipStatusType
+  CourseOfferingCurriculumUsed
+  CurriculumUsedType
+  DocumentCategoryType
+  EdFiException
+  EducationContentAuthor
+  EducationContentDerivativeEducationContentSource
+  EducationContentDerivativeLearningResourceMetadataURISource
+  EducationContentDerivativeURISource
+  EducationContentLanguages
+  EntryGradeLevelReasonType
+  EventCircumstanceType
+  GradebookEntryType
+  GunFreeSchoolsActReportingStatusType
+  IdentificationDocumentUseType
+  InterventionDiagnosisDescriptor
+  InterventionLearningResourceMetadataURI
+  InterventionPrescriptionLearningResourceMetadataURI
+  InterventionPrescriptionURI
+  InterventionStudyLearningResourceMetadataURI
+  InterventionStudyURI
+  InterventionURI
+  LanguageUseType
+  LearningObjectiveContentStandard
+  LearningObjectiveContentStandardAuthor
+  LearningStandardContentStandard
+  LearningStandardContentStandardAuthor
+  LocalEducationAgencyAccountability
+  LocalEducationAgencyFederalFunds
+  ParentIdentificationDocument
+  PostSecondaryInstitution
+  PostSecondaryInstitutionIdentificationCode
+  PostSecondaryInstitutionInstructionalCategory
+  PostSecondaryInstitutionLevelType
+  ProgramCharacteristic
+  ProgramCharacteristicDescriptor
+  ProgramCharacteristicType
+  ProgramLearningObjective
+  ProgramLearningStandard
+  ReportCardStudentCompetencyLearningObjective
+  SchoolChoiceImplementStatusType
+  StaffIdentificationDocument
+  StaffLanguages
+  StaffLanguageUse
+  StaffVisa
+  StateEducationAgencyAccountability
+  StateEducationAgencyFederalFunds
+  StudentIdentificationDocument
+  StudentLanguageUse
+  StudentProgramAttendanceEvent
+  StudentProgramParticipationsCharacteristic
+  StudentVisa
+  VisaType
+-->
+
+<Aggregates>
+  <Aggregate name="Students" root="Student">
+    <Entity table="Student" /> <!-- Eventually use: isA="Person" /> -->
+    <Entity table="StudentCharacteristic" /> <!-- renamed from StudentCharacteristics -->
+    <Entity table="StudentIndicator" />
+    <Entity table="StudentLanguage" />
+    <Entity table="Disability" />
+    <Entity table="StudentTelephone" />
+    <Entity table="StudentElectronicMail" />
+    <Entity table="StudentCohortYear" />
+    <Entity table="StudentRace" />
+    <Entity table="StudentIdentificationCode" />
+    <Entity table="StudentHomeLanguage" />
+    <Entity table="StudentOtherName" />
+    <Entity table="StudentAddress" />
+    <Entity table="StudentInternationalAddress" />
+    <Entity table="StudentLearningStyle" />
+    <Entity table="StudentProgramParticipation" />
+    <Entity table="StudentParentAssociation" />
+  </Aggregate>
+
+  <Aggregate name="Programs" root="Program">
+    <Entity table="Program" />
+    <Entity table="ProgramService" />
+  </Aggregate>
+
+  <Aggregate name="Sections" root="Section">
+    <Entity table="Section" />
+    <Entity table="SectionProgram" />
+    <Entity table="SectionSectionCharacteristic" />
+  </Aggregate>
+
+  <Aggregate name="StudentSectionAssociations" root="StudentSectionAssociation">
+    <Entity table="StudentSectionAssociation" />
+  </Aggregate>
+
+  <Aggregate name="RestraintEvents" root="RestraintEvent">
+    <Entity table="RestraintEvent" />
+    <Entity table="RestraintEventReason" />
+    <Entity table="RestraintEventProgram" />
+  </Aggregate>
+
+  <Aggregate name="StaffProgramAssociations" root="StaffProgramAssociation">
+    <Entity table="StaffProgramAssociation" />
+  </Aggregate>
+
+  <Aggregate name="StudentProgramAssociations" root="StudentProgramAssociation">
+    <Entity table="StudentProgramAssociation" />
+    <Entity table="StudentProgramAssociationService" />
+  </Aggregate>
+
+  <Aggregate name="StudentSpecialEdProgramAssociations" root="StudentSpecialEdProgramAssociation">
+    <Entity table="StudentSpecialEdProgramAssociation" isA="StudentProgramAssociation" />
+    <Entity table="StudentSpecialEdProgramAssociationServiceProvider" />
+  </Aggregate>
+
+  <Aggregate name="StudentMigrantEducationProgramAssociations" root="StudentMigrantEducationProgramAssociation">
+    <Entity table="StudentMigrantEducationProgramAssociation" isA="StudentProgramAssociation" />
+  </Aggregate>
+
+  <!-- Is this really on its own, or could it be included within the ProgramEnrollments aggregate? -->
+  <Aggregate name="StudentTitleIPartAProgramAssociations" root="StudentTitleIPartAProgramAssociation">
+    <Entity table="StudentTitleIPartAProgramAssociation" />
+  </Aggregate>
+
+  <!-- Is this really on its own, or could it be included within the ProgramEnrollments aggregate? -->
+  <Aggregate name="StudentCTEProgramAssociations" root="StudentCTEProgramAssociation">
+    <Entity table="StudentCTEProgramAssociation" />
+  </Aggregate>
+
+  <Aggregate name="AssessmentItems" root="AssessmentItem">
+    <Entity table="AssessmentItem" />
+    <Entity table="AssessmentItemLearningStandard" />
+  </Aggregate>
+
+  <Aggregate name="Assessments" root="Assessment">
+    <Entity table="Assessment" />
+    <Entity table="AssessmentAssessmentFamily" />
+    <Entity table="AssessmentScore" />
+    <Entity table="AssessmentContentStandard" />
+    <Entity table="AssessmentIdentificationCode" />
+    <Entity table="AssessmentPerformanceLevel" />
+    <Entity table="AssessmentSection" />
+  </Aggregate>
+
+  <Aggregate name="AssessmentFamilies" root="AssessmentFamily">
+    <Entity table="AssessmentFamily" />
+    <Entity table="AssessmentFamilyAssessmentPeriod" />
+    <Entity table="AssessmentFamilyIdentificationCode" />
+    <Entity table="AssessmentFamilyContentStandard" />
+  </Aggregate>
+
+  <Aggregate name="ObjectiveAssessments" root="ObjectiveAssessment">
+    <Entity table="ObjectiveAssessment" />
+    <Entity table="ObjectiveAssessmentLearningObjective" />
+    <Entity table="ObjectiveAssessmentLearningStandard" />
+    <Entity table="ObjectiveAssessmentItem" />
+    <Entity table="ObjectiveAssessmentPerformanceLevel" />
+  </Aggregate>
+
+  <Aggregate name="StudentAssessments" root="StudentAssessment">
+    <Entity table="StudentAssessment" />
+    <Entity table="StudentAssessmentPerformanceLevel" />
+    <Entity table="StudentAssessmentAccommodation" />
+    <Entity table="StudentAssessmentScoreResult" />
+    <Entity table="StudentAssessmentItem" />
+    <!-- TODO: Discussion needed, is this a new aggregate? Contains optional many-to-many -->
+    <Entity table="StudentObjectiveAssessment" />
+    <!-- ?? -->
+    <Entity table="StudentObjectiveAssessmentScoreResult" />
+    <Entity table="StudentObjectiveAssessmentPerformanceLevel" />
+  </Aggregate>
+
+  <Aggregate name="LearningObjectives" root="LearningObjective">
+    <Entity table="LearningObjective">
+      <Value table="LearningObjectiveContentStandard" />
+    </Entity>
+  </Aggregate>
+
+  <Aggregate name="LearningStandards" root="LearningStandard">
+    <Entity table="LearningStandard">
+      <Value table="LearningStandardContentStandard" />
+    </Entity>
+    <Entity table="LearningStandardIdentificationCode" />
+  </Aggregate>
+
+  <!-- TODO: Need to come up with a pluralized name for the aggregate -->
+  <Aggregate name="EducationContents" root="EducationContent">
+    <Entity table="EducationContent" />
+    <Entity table="EducationContentSexTypeAppropriateness" />
+    <Entity table="EducationContentGradeLevelTypeAppropriateness" />
+  </Aggregate>
+
+  <!-- TODO: Review required - These tables were split off into separate aggregate after looking
+    at physical model for use in code generation. Needs review with Ed, Matt, Silvia, Jeremy, etc. -->
+  <!-- TODO: Self-referencing many-to-many is introducing complexity into the code generation. Skipping for now. -->
+  <!-- TODO: Verify removal in 1.2 
+  <Aggregate name="LearningResourceMetadatas" root="LearningResourceMetadata">
+    <Entity table="LearningResourceMetadata" />
+    <Entity table="LearningResourceMetadataAuthor" />
+    <Entity table="DerivativeWorkSource" />
+    <Entity table="LearningResourceMetadataDerivativeWorkSource" />
+  </Aggregate>
+  -->
+  
+  <Aggregate name="CalendarDates" root="CalendarDate">
+    <Entity table="CalendarDate" />
+  </Aggregate>
+
+  <Aggregate name="Sessions" root="Session">
+    <Entity table="Session" />
+    <Entity table="SessionGradingPeriod" />
+    <Entity table="AcademicWeek" />
+  </Aggregate>
+
+  <!-- TODO: Need to confirm removal
+  <Aggregate name="MeetingTimes" root="MeetingTime">
+    <Entity table="MeetingTime" />
+    <Entity table="MeetingTimeMeetingDay" />
+  </Aggregate>
+   -->
+
+  <!-- TODO: Need to revisit -->
+  <Aggregate name="ClassPeriods" root="ClassPeriod">
+    <Entity table="ClassPeriod" />
+  </Aggregate>
+
+  <!-- TODO: Removed in 1.2, but BellSchedule needs to be re-evaluated for aggregate -->
+  <!--
+  <Aggregate name="BellSchedules" root="BellSchedule">
+    <Entity table="BellSchedule" />
+    <Entity table="BellScheduleCalendarDate" />
+    <Entity table="BellScheduleGradeLevel" />
+  </Aggregate>
+  -->
+  
+  <Aggregate name="DisciplineIncidents" root="DisciplineIncident">
+    <Entity table="DisciplineIncident" />
+    <Entity table="DisciplineIncidentBehavior" />
+    <!-- TODO: Removed in 1.2 <Entity table="DisciplineIncidentSecondaryBehavior" /> -->
+    <Entity table="DisciplineIncidentWeapon" /> 
+    <Entity table="StudentDisciplineIncidentAssociation" />
+    <Entity table="StudentDisciplineIncidentBehavior" />
+    <!-- TODO: Removed in 1.2 <Entity table="StudentDisciplineIncidentSecondaryBehavior" /> -->
+  </Aggregate>
+
+  <Aggregate name="DisciplineActions" root="DisciplineAction">
+    <Entity table="DisciplineAction" />
+    <Entity table="DisciplineActionDiscipline" />
+    <Entity table="DisciplineActionStaff" />
+  </Aggregate>
+
+  <Aggregate name="StudentSchoolAssociations" root="StudentSchoolAssociation">
+    <Entity table="StudentSchoolAssociation" />
+    <Entity table="StudentSchoolAssociationGraduationPlan" />
+    <Entity table="StudentSchoolAssociationEducationPlan" />
+  </Aggregate>
+
+  <Aggregate name="StudentEducationOrganizationAssociations" root="StudentEducationOrganizationAssociation">
+    <Entity table="StudentEducationOrganizationAssociation" />
+    <!-- rename? -->
+  </Aggregate>
+
+  <Aggregate name="GraduationPlans" root="GraduationPlan">
+    <Entity table="GraduationPlan" />
+    <Entity table="GraduationPlanCreditsByCourse" />
+    <Entity table="GraduationPlanCreditsBySubject" />
+  </Aggregate>
+
+  <Aggregate name="Accounts" root="Account">
+    <Entity table="Account" />
+    <Entity table="AccountCode" />
+  </Aggregate>
+
+  <Aggregate name="AccountActuals" root="Actual">
+    <Entity table="Actual" />
+  </Aggregate>
+
+  <Aggregate name="AccountBudgets" root="Budget">
+    <Entity table="Budget" />
+  </Aggregate>
+
+  <Aggregate name="ContractorAccruals" root="ContractedStaff">
+    <Entity table="ContractedStaff" />
+  </Aggregate>
+
+  <Aggregate name="EmployeeAccruals" root="Payroll">
+    <Entity table="Payroll" />
+  </Aggregate>
+
+  <Aggregate name="PostSecondaryEvents" root="PostSecondaryEvent">
+    <Entity table="PostSecondaryEvent" />
+  </Aggregate>
+
+  <Aggregate name="Interventions" root="Intervention">
+    <Entity table="Intervention" />
+    <Entity table="InterventionStaff" />
+    <Entity table="InterventionEducationContent" />
+    <!-- TODO: Removed in 1.2 <Entity table="InterventionDiagnosisType" /> -->
+    <Entity table="InterventionGradeLevelTypeAppropriateness" />
+    <Entity table="InterventionInterventionPrescription" />
+    <Entity table="InterventionPopulationServedType" />
+    <Entity table="InterventionSexTypeAppropriateness" />
+    <Entity table="InterventionMeetingTime" />
+    <!-- TODO: Review for 1.1.1 -->
+  </Aggregate>
+
+  <Aggregate name="InterventionPrescriptions" root="InterventionPrescription">
+    <Entity table="InterventionPrescription" />
+    <Entity table="InterventionPrescriptionSexTypeAppropriateness" />
+    <Entity table="InterventionPrescriptionGradeLevelTypeAppropriateness" />
+    <Entity table="InterventionPrescriptionPopulationServedType" />
+    <Entity table="InterventionPrescriptionDiagnosisType" />
+    <Entity table="InterventionPrescriptionEducationContent" />
+  </Aggregate>
+
+  <Aggregate name="InterventionStudies" root="InterventionStudy">
+    <Entity table="InterventionStudy" />
+    <Entity table="InterventionStudySexType" />
+    <Entity table="InterventionStudyGradeLevelType" />
+    <Entity table="InterventionStudyInterventionEffectiveness" />
+    <Entity table="InterventionStudyPopulationServedType" />
+    <Entity table="InterventionStudyEducationContent" />
+    <Entity table="InterventionStudyStateAbbreviationType" />
+  </Aggregate>
+
+
+  <Aggregate name="StudentInterventionParticipation" root="StudentInterventionAssociation">
+    <Entity table="StudentInterventionAssociation" />
+    <Entity table="StudentInterventionAssociationInterventionEffectiveness" />
+  </Aggregate>
+
+  <Aggregate name="StudentInterventionAttendanceEvents" root="StudentInterventionAttendanceEvent">
+    <Entity table="StudentInterventionAttendanceEvent" />
+  </Aggregate>
+
+  <Aggregate name="GradingPeriods" root="GradingPeriod">
+    <Entity table="GradingPeriod" />
+  </Aggregate>
+
+  <!-- TODO: Need to come up with a pluralized name for the aggregate -->
+  <!-- Question: Why TeacherUSI on table?  Also, why no discriminators for "Is a" relationships? -->
+  <Aggregate name="Staff" root="Staff">
+    <Entity table="Staff" /> <!-- Eventually use: isA="Person" /> -->
+    <!-- TODO: Teacher table doesn't exist separately <Entity table="Teacher" /> -->
+    <Entity table="StaffAddress" />
+    <Entity table="StaffInternationalAddress" />
+    <Entity table="StaffRace" />
+    <Entity table="StaffElectronicMail" />
+    <Entity table="StaffIdentificationCode" />
+    <Entity table="StaffOtherName" />
+    <Entity table="StaffTelephone" />
+    <Entity table="Credential" />
+  </Aggregate>
+
+  <!-- Possible implmentation of aggregate for derived Teacher entity -->
+  <!--
+  <Aggregate name="Teachers" root="Teacher">
+    <Entity table="Teacher" /> 
+    <Entity table="StaffAddress" />
+    <Entity table="StaffInternationalAddress" />
+    <Entity table="StaffRace" />
+    <Entity table="StaffElectronicMail" />
+    <Entity table="StaffIdentificationCode" />
+    <Entity table="StaffOtherName" />
+    <Entity table="StaffTelephone" />
+    <Entity table="Credential" />
+  </Aggregate>
+  -->
+
+  <Aggregate name="StaffLeaveEvents" root="LeaveEvent">
+    <Entity table="LeaveEvent" />
+  </Aggregate>
+
+  <Aggregate name="TeacherSectionAssociations" root="TeacherSectionAssociation">
+    <Entity table="TeacherSectionAssociation" />
+  </Aggregate>
+
+  <Aggregate name="TeacherSchoolAssociations" root="TeacherSchoolAssociation">
+    <Entity table="TeacherSchoolAssociation" />
+    <Entity table="TeacherSchoolAssociationAcademicSubject" />
+    <Entity table="TeacherSchoolAssociationInstructionalGradeLevel" />
+  </Aggregate>
+
+  <Aggregate name="OpenStaffPositions" root="OpenStaffPosition">
+    <Entity table="OpenStaffPosition" />
+    <Entity table="OpenStaffPositionAcademicSubject" />
+    <Entity table="OpenStaffPositionInstructionalGradeLevel" />
+  </Aggregate>
+
+  <Aggregate name="Courses" root="Course">
+    <Entity table="Course" />
+    <Entity table="CourseCodeIdentificationCode" />
+    <Entity table="CourseGradesOffered" />
+    <Entity table="CourseLearningObjective" />
+    <Entity table="CourseLearningStandard" />
+    <Entity table="CourseLevelCharacteristic" />
+    <Entity table="CourseCompetencyLevelDescriptor" />
+  </Aggregate>
+
+  <Aggregate name="CourseOfferings" root="CourseOffering">
+    <Entity table="CourseOffering" />
+  </Aggregate>
+
+  <Aggregate name="StudentAcademicRecords" root="StudentAcademicRecord">
+    <Entity table="StudentAcademicRecord" />
+    <Entity table="StudentAcademicRecordReportCard" />
+    <Entity table="Diploma" />
+    <Entity table="Recognition" />
+    <Entity table="AcademicHonor" />
+    <Entity table="ClassRanking" />
+    <Entity table="CourseTranscript" />
+    <Entity table="AdditionalCredit" />
+  </Aggregate>
+
+  <Aggregate name="ReportCards" root="ReportCard">
+    <Entity table="ReportCard" />
+    <Entity table="ReportCardGrade" />
+    <!-- TODO: Removed in 1.2 <Entity table="ReportCardStudentCompetenceyLearningObjective" /> -->
+    <Entity table="ReportCardStudentCompetencyObjective" />
+  </Aggregate>
+
+  <Aggregate name="Grades" root="Grade">
+    <Entity table="Grade" />
+  </Aggregate>
+
+  <Aggregate name="GradebookEntries" root="GradebookEntry">
+    <Entity table="GradebookEntry" />
+    <Entity table="StudentGradebookEntry" />
+    <Entity table="GradebookEntryLearningObjective" />
+    <Entity table="GradebookEntryLearningStandard" />
+  </Aggregate>
+
+  <Aggregate name="StudentSectionAttendanceEvents" root="StudentSectionAttendanceEvent">
+    <Entity table="StudentSectionAttendanceEvent" />
+  </Aggregate>
+
+  <Aggregate name="StudentSchoolAttendanceEvents" root="StudentSchoolAttendanceEvent">
+    <Entity table="StudentSchoolAttendanceEvent" />
+  </Aggregate>
+
+  <Aggregate name="Cohorts" root="Cohort">
+    <Entity table="Cohort" />
+    <Entity table="StudentCohortAssociation" />
+    <Entity table="StudentCohortAssociationSection" />
+    <Entity table="StaffCohortAssociation" />
+    <Entity table="CohortProgram" />
+  </Aggregate>
+
+  <Aggregate name="StudentCompetencyLearningObjectives" root="StudentCompetencyLearningObjective">
+    <Entity table="StudentCompetencyLearningObjective" />
+  </Aggregate>
+
+  <!-- TODO: Need to revisit this on 2nd pass -->
+  <Aggregate name="StudentCompetencyObjectives" root="StudentCompetencyObjective">
+    <Entity table="StudentCompetencyObjective" />
+  </Aggregate>
+
+  <Aggregate name="Parents" root="Parent">
+    <Entity table="Parent" /> <!-- Eventually use: isA="Person" /> -->
+    <Entity table="ParentAddress" />
+    <Entity table="ParentInternationalAddress" />
+    <Entity table="ParentElectronicMail" />
+    <Entity table="ParentOtherName" />
+    <Entity table="ParentTelephone" />
+  </Aggregate>
+
+  <!-- Abstract base type -->
+  <Aggregate name="EducationOrganization" root="EducationOrganization" >
+    <Entity table="EducationOrganization" isAbstract="true" />
+    <Entity table="EducationOrganizationAddress" />
+    <Entity table="EducationOrganizationCategory" />
+    <Entity table="EducationOrganizationTelephone" />
+    <Entity table="EducationOrgIdentificationCode" />
+    <Entity table="AccountabilityRating" />
+    <Entity table="EducationOrganizationInterventionPrescriptionAssociation" />
+    <!-- TODO: May want to revisit this on a 2nd pass -->
+    <Entity table="EducationOrganizationNetworkAssociation" />
+  </Aggregate>
+
+  <Aggregate name="EducationOrganizationPeers" root="EducationOrganizationPeer">
+    <Entity table="EducationOrganizationPeer" />
+    <!-- TODO: Bidirectional association? -->
+  </Aggregate>
+
+  <Aggregate name="Schools" root="School">
+    <Entity table="School" isA="EducationOrganization" />
+    <Entity table="SchoolCategory" />
+    <Entity table="SchoolGradeOffered" />
+    <Entity table="FeederSchoolAssociation" />
+  </Aggregate>
+
+  <Aggregate name="EducationServiceCenters" root="EducationServiceCenter">
+    <Entity table="EducationServiceCenter" isA="EducationOrganization" />
+  </Aggregate>
+
+  <Aggregate name="EducationOrganizationNetworks" root="EducationOrganizationNetwork">
+    <Entity table="EducationOrganizationNetwork" isA="EducationOrganization" />
+  </Aggregate>
+
+  <Aggregate name="LocalEducationAgencies" root="LocalEducationAgency">
+    <Entity table="LocalEducationAgency" isA="EducationOrganization" />
+  </Aggregate>
+
+  <Aggregate name="StateEducationAgencies" root="StateEducationAgency">
+    <Entity table="StateEducationAgency" isA="EducationOrganization" />
+  </Aggregate>
+
+  <Aggregate name="Locations" root="Location">
+    <Entity table="Location" />
+  </Aggregate>
+
+  <!-- Abstract base type -->
+  <Aggregate name="Person" root="Person">
+    <Entity table="Person" isAbstract="true" />
+  </Aggregate>
+  
+  <Aggregate name="StaffEducationOrgEmploymentAssociations" root="StaffEducationOrgEmploymentAssociation">
+    <Entity table="StaffEducationOrgEmploymentAssociation" />
+  </Aggregate>
+
+  <Aggregate name="StaffEducationOrgAssignmentAssociations" root="StaffEducationOrgAssignmentAssociation">
+    <Entity table="StaffEducationOrgAssignmentAssociation" />
+    <Entity table="StaffEducationOrgAssignmentEmploymentAssociation" />
+  </Aggregate>
+
+  <!-- ================= Types and Descriptor Combos ================= -->
+  <Aggregate name="AcademicSubjectTypes" root="AcademicSubjectType">
+    <Entity table="AcademicSubjectType" />
+  </Aggregate>
+
+  <Aggregate name="AcademicSubjectDescriptors" root="AcademicSubjectDescriptor">
+    <Entity table="AcademicSubjectDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="AccommodationTypes" root="AccommodationType">
+    <Entity table="AccommodationType" />
+  </Aggregate>
+
+  <Aggregate name="AccommodationDescriptors" root="AccommodationDescriptor">
+    <Entity table="AccommodationDescriptor" isA="Descriptor" />
+  </Aggregate>
+  
+  <Aggregate name="AdministrativeFundingControlTypes" root="AdministrativeFundingControlType">
+    <Entity table="AdministrativeFundingControlType" />
+  </Aggregate>
+
+  <Aggregate name="AdministrativeFundingControlDescriptors" root="AdministrativeFundingControlDescriptor">
+    <Entity table="AdministrativeFundingControlDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="AttendanceEventCategoryTypes" root="AttendanceEventCategoryType">
+    <Entity table="AttendanceEventCategoryType" />
+  </Aggregate>
+
+  <Aggregate name="AttendanceEventCategoryDescriptors" root="AttendanceEventCategoryDescriptor">
+    <Entity table="AttendanceEventCategoryDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="CalendarEventTypes" root="CalendarEventType">
+    <Entity table="CalendarEventType" />
+  </Aggregate>
+
+  <Aggregate name="CalendarEventDescriptors" root="CalendarEventDescriptor">
+    <Entity table="CalendarEventDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="ClassroomPositionTypes" root="ClassroomPositionType">
+    <Entity table="ClassroomPositionType" />
+  </Aggregate>
+
+  <Aggregate name="ClassroomPositionDescriptors" root="ClassroomPositionDescriptor">
+    <Entity table="ClassroomPositionDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="ContinuationOfServicesReasonTypes" root="ContinuationOfServicesReasonType">
+    <Entity table="ContinuationOfServicesReasonType" />
+  </Aggregate>
+
+  <Aggregate name="ContinuationOfServicesReasonDescriptors" root="ContinuationOfServicesReasonDescriptor">
+    <Entity table="ContinuationOfServicesReasonDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="Descriptors" root="Descriptor">
+    <Entity table="Descriptor" /> <!-- isAbstract="true" -->
+  </Aggregate>
+
+  <Aggregate name="DiagnosisTypes" root="DiagnosisType">
+    <Entity table="DiagnosisType" />
+  </Aggregate>
+
+  <Aggregate name="DiagnosisDescriptors" root="DiagnosisDescriptor">
+    <Entity table="DiagnosisDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="DisabilityTypes" root="DisabilityType">
+    <Entity table="DisabilityType" />
+  </Aggregate>
+
+  <Aggregate name="DisabilityDescriptors" root="DisabilityDescriptor">
+    <Entity table="DisabilityDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="DisciplineTypes" root="DisciplineType">
+    <Entity table="DisciplineType" />
+  </Aggregate>
+
+  <Aggregate name="DisciplineDescriptors" root="DisciplineDescriptor">
+    <Entity table="DisciplineDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="EmploymentStatusTypes" root="EmploymentStatusType">
+    <Entity table="EmploymentStatusType" />
+  </Aggregate>
+
+  <Aggregate name="EmploymentStatusDescriptors" root="EmploymentStatusDescriptor">
+    <Entity table="EmploymentStatusDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="GradeLevelTypes" root="GradeLevelType">
+    <Entity table="GradeLevelType" />
+  </Aggregate>
+
+  <Aggregate name="GradeLevelDescriptors" root="GradeLevelDescriptor">
+    <Entity table="GradeLevelDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="GradingPeriodTypes" root="GradingPeriodType">
+    <Entity table="GradingPeriodType" />
+  </Aggregate>
+
+  <Aggregate name="GradingPeriodDescriptors" root="GradingPeriodDescriptor">
+    <Entity table="GradingPeriodDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="LevelOfEducationTypes" root="LevelOfEducationType">
+    <Entity table="LevelOfEducationType" />
+  </Aggregate>
+
+  <Aggregate name="LevelOfEducationDescriptors" root="LevelOfEducationDescriptor">
+    <Entity table="LevelOfEducationDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="LimitedEnglishProficiencyTypes" root="LimitedEnglishProficiencyType">
+    <Entity table="LimitedEnglishProficiencyType" />
+  </Aggregate>
+
+  <Aggregate name="LimitedEnglishProficiencyDescriptors" root="LimitedEnglishProficiencyDescriptor">
+    <Entity table="LimitedEnglishProficiencyDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="ProgramAssignmentTypes" root="ProgramAssignmentType">
+    <Entity table="ProgramAssignmentType" />
+  </Aggregate>
+
+  <Aggregate name="ProgramAssignmentDescriptors" root="ProgramAssignmentDescriptor">
+    <Entity table="ProgramAssignmentDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="ReasonExitedTypes" root="ReasonExitedType">
+    <Entity table="ReasonExitedType" />
+  </Aggregate>
+
+  <Aggregate name="ReasonExitedDescriptors" root="ReasonExitedDescriptor">
+    <Entity table="ReasonExitedDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="ReporterDescriptionTypes" root="ReporterDescriptionType">
+    <Entity table="ReporterDescriptionType" />
+  </Aggregate>
+
+  <Aggregate name="ReporterDescriptionDescriptors" root="ReporterDescriptionDescriptor">
+    <Entity table="ReporterDescriptionDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="ResidencyStatusTypes" root="ResidencyStatusType">
+    <Entity table="ResidencyStatusType" />
+  </Aggregate>
+
+  <Aggregate name="ResidencyStatusDescriptors" root="ResidencyStatusDescriptor">
+    <Entity table="ResidencyStatusDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="ResponsibilityTypes" root="ResponsibilityType">
+    <Entity table="ResponsibilityType" />
+  </Aggregate>
+
+  <Aggregate name="ResponsibilityDescriptors" root="ResponsibilityDescriptor">
+    <Entity table="ResponsibilityDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="SchoolFoodServicesEligibilityTypes" root="SchoolFoodServicesEligibilityType">
+    <Entity table="SchoolFoodServicesEligibilityType" />
+  </Aggregate>
+
+  <Aggregate name="SchoolFoodServicesEligibilityDescriptors" root="SchoolFoodServicesEligibilityDescriptor">
+    <Entity table="SchoolFoodServicesEligibilityDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="SectionCharacteristicsTypes" root="SectionCharacteristicsType">
+    <Entity table="SectionCharacteristicsType" />
+  </Aggregate>
+
+  <Aggregate name="SectionCharacteristicsDescriptors" root="SectionCharacteristicsDescriptor">
+    <Entity table="SectionCharacteristicsDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="SeparationReasonTypes" root="SeparationReasonType">
+    <Entity table="SeparationReasonType" />
+  </Aggregate>
+
+  <Aggregate name="SeparationReasonDescriptors" root="SeparationReasonDescriptor">
+    <Entity table="SeparationReasonDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="SpecialEducationSettingTypes" root="SpecialEducationSettingType">
+    <Entity table="SpecialEducationSettingType" />
+  </Aggregate>
+
+  <Aggregate name="SpecialEducationSettingDescriptors" root="SpecialEducationSettingDescriptor">
+    <Entity table="SpecialEducationSettingDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="StaffClassificationTypes" root="StaffClassificationType">
+    <Entity table="StaffClassificationType" />
+  </Aggregate>
+
+  <Aggregate name="StaffClassificationDescriptors" root="StaffClassificationDescriptor">
+    <Entity table="StaffClassificationDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <Aggregate name="TeachingCredentialTypes" root="TeachingCredentialType">
+    <Entity table="TeachingCredentialType" />
+  </Aggregate>
+
+  <Aggregate name="TeachingCredentialDescriptors" root="TeachingCredentialDescriptor">
+    <Entity table="TeachingCredentialDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <!-- ================= Type or Descriptor Only ================== -->
+  <Aggregate name="AcademicHonorsTypes" root="AcademicHonorsType">
+    <Entity table="AcademicHonorsType" />
+  </Aggregate>
+
+
+  <Aggregate name="AccountCodeDescriptors" root="AccountCodeDescriptor">
+    <Entity table="AccountCodeDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="AddressTypes" root="AddressType">
+    <Entity table="AddressType" />
+  </Aggregate>
+
+
+  <Aggregate name="AdministrationEnvironmentTypes" root="AdministrationEnvironmentType">
+    <Entity table="AdministrationEnvironmentType" />
+  </Aggregate>
+
+
+  <Aggregate name="AssessmentCategoryTypes" root="AssessmentCategoryType">
+    <Entity table="AssessmentCategoryType" />
+  </Aggregate>
+
+
+  <Aggregate name="AssessmentIdentificationSystemTypes" root="AssessmentIdentificationSystemType">
+    <Entity table="AssessmentIdentificationSystemType" />
+  </Aggregate>
+
+
+  <Aggregate name="AssessmentItemResultTypes" root="AssessmentItemResultType">
+    <Entity table="AssessmentItemResultType" />
+  </Aggregate>
+
+
+  <Aggregate name="AssessmentPeriodDescriptors" root="AssessmentPeriodDescriptor">
+    <Entity table="AssessmentPeriodDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="AssessmentReportingMethodTypes" root="AssessmentReportingMethodType">
+    <Entity table="AssessmentReportingMethodType" />
+  </Aggregate>
+
+
+  <Aggregate name="BehaviorCategoryTypes" root="BehaviorCategoryType">
+    <Entity table="BehaviorCategoryType" />
+  </Aggregate>
+
+
+  <Aggregate name="BehaviorDescriptors" root="BehaviorDescriptor">
+    <Entity table="BehaviorDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="CareerPathwayTypes" root="CareerPathwayType">
+    <Entity table="CareerPathwayType" />
+  </Aggregate>
+
+
+  <Aggregate name="CharterStatusTypes" root="CharterStatusType">
+    <Entity table="CharterStatusType" />
+  </Aggregate>
+
+
+  <Aggregate name="CohortScopeTypes" root="CohortScopeType">
+    <Entity table="CohortScopeType" />
+  </Aggregate>
+
+
+  <Aggregate name="CohortTypes" root="CohortType">
+    <Entity table="CohortType" />
+  </Aggregate>
+
+
+  <Aggregate name="CohortYearTypes" root="CohortYearType">
+    <Entity table="CohortYearType" />
+  </Aggregate>
+
+
+  <Aggregate name="CompetencyLevelDescriptors" root="CompetencyLevelDescriptor">
+    <Entity table="CompetencyLevelDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="ContentClassTypes" root="ContentClassType">
+    <Entity table="ContentClassType" />
+  </Aggregate>
+
+
+  <Aggregate name="CostRateTypes" root="CostRateType">
+    <Entity table="CostRateType" />
+  </Aggregate>
+
+
+  <Aggregate name="CountryCodeTypes" root="CountryCodeType">
+    <Entity table="CountryCodeType" />
+  </Aggregate>
+
+
+  <Aggregate name="CourseAttemptResultTypes" root="CourseAttemptResultType">
+    <Entity table="CourseAttemptResultType" />
+  </Aggregate>
+
+
+  <Aggregate name="CourseCodeSystemTypes" root="CourseCodeSystemType">
+    <Entity table="CourseCodeSystemType" />
+  </Aggregate>
+
+<!-- TODO: Review with Ed, moved to Course 
+  <Aggregate name="CourseCompetencyLevelDescriptors" root="CourseCompetencyLevelDescriptor">
+    <Entity table="CourseCompetencyLevelDescriptor" />
+  </Aggregate>
+-->
+
+  <Aggregate name="CourseDefinedByTypes" root="CourseDefinedByType">
+    <Entity table="CourseDefinedByType" />
+  </Aggregate>
+
+
+  <Aggregate name="CourseGPAApplicabilityTypes" root="CourseGPAApplicabilityType">
+    <Entity table="CourseGPAApplicabilityType" />
+  </Aggregate>
+
+
+  <Aggregate name="CourseLevelCharacteristicTypes" root="CourseLevelCharacteristicType">
+    <Entity table="CourseLevelCharacteristicType" />
+  </Aggregate>
+
+
+  <Aggregate name="CourseRepeatCodeTypes" root="CourseRepeatCodeType">
+    <Entity table="CourseRepeatCodeType" />
+  </Aggregate>
+
+
+  <Aggregate name="CredentialFieldDescriptors" root="CredentialFieldDescriptor">
+    <Entity table="CredentialFieldDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="CredentialTypes" root="CredentialType">
+    <Entity table="CredentialType" />
+  </Aggregate>
+
+
+  <Aggregate name="CreditTypes" root="CreditType">
+    <Entity table="CreditType" />
+  </Aggregate>
+
+
+  <Aggregate name="DeliveryMethodTypes" root="DeliveryMethodType">
+    <Entity table="DeliveryMethodType" />
+  </Aggregate>
+
+
+  <Aggregate name="DiplomaLevelTypes" root="DiplomaLevelType">
+    <Entity table="DiplomaLevelType" />
+  </Aggregate>
+
+
+  <Aggregate name="DiplomaTypes" root="DiplomaType">
+    <Entity table="DiplomaType" />
+  </Aggregate>
+
+
+  <Aggregate name="DisabilityCategoryTypes" root="DisabilityCategoryType">
+    <Entity table="DisabilityCategoryType" />
+  </Aggregate>
+
+
+  <Aggregate name="DisciplineActionLengthDifferenceReasonTypes" root="DisciplineActionLengthDifferenceReasonType">
+    <Entity table="DisciplineActionLengthDifferenceReasonType" />
+  </Aggregate>
+
+
+  <Aggregate name="EducationalEnvironmentTypes" root="EducationalEnvironmentType">
+    <Entity table="EducationalEnvironmentType" />
+  </Aggregate>
+
+
+  <Aggregate name="EducationOrganizationCategoryTypes" root="EducationOrganizationCategoryType">
+    <Entity table="EducationOrganizationCategoryType" />
+  </Aggregate>
+
+
+  <Aggregate name="EducationOrgIdentificationSystemTypes" root="EducationOrgIdentificationSystemType">
+    <Entity table="EducationOrgIdentificationSystemType" />
+  </Aggregate>
+
+
+  <Aggregate name="EducationPlanTypes" root="EducationPlanType">
+    <Entity table="EducationPlanType" />
+  </Aggregate>
+
+
+  <Aggregate name="ElectronicMailTypes" root="ElectronicMailType">
+    <Entity table="ElectronicMailType" />
+  </Aggregate>
+
+
+  <Aggregate name="EntryTypes" root="EntryType">
+    <Entity table="EntryType" />
+  </Aggregate>
+
+
+  <Aggregate name="EntryTypeDescriptors" root="EntryTypeDescriptor">
+    <Entity table="EntryTypeDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="ExitWithdrawTypes" root="ExitWithdrawType">
+    <Entity table="ExitWithdrawType" />
+  </Aggregate>
+
+
+  <Aggregate name="ExitWithdrawTypeDescriptors" root="ExitWithdrawTypeDescriptor">
+    <Entity table="ExitWithdrawTypeDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="GradeTypes" root="GradeType">
+    <Entity table="GradeType" />
+  </Aggregate>
+
+
+  <Aggregate name="GraduationPlanTypes" root="GraduationPlanType">
+    <Entity table="GraduationPlanType" />
+  </Aggregate>
+
+
+  <Aggregate name="GraduationPlanTypeDescriptors" root="GraduationPlanTypeDescriptor">
+    <Entity table="GraduationPlanTypeDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="IncidentLocationTypes" root="IncidentLocationType">
+    <Entity table="IncidentLocationType" />
+  </Aggregate>
+
+
+  <Aggregate name="InstitutionTelephoneNumberTypes" root="InstitutionTelephoneNumberType">
+    <Entity table="InstitutionTelephoneNumberType" />
+  </Aggregate>
+
+
+  <Aggregate name="InteractivityStyleTypes" root="InteractivityStyleType">
+    <Entity table="InteractivityStyleType" />
+  </Aggregate>
+
+
+  <Aggregate name="InternetAccessTypes" root="InternetAccessType">
+    <Entity table="InternetAccessType" />
+  </Aggregate>
+
+
+  <Aggregate name="InterventionClassTypes" root="InterventionClassType">
+    <Entity table="InterventionClassType" />
+  </Aggregate>
+
+
+  <Aggregate name="InterventionEffectivenessRatingTypes" root="InterventionEffectivenessRatingType">
+    <Entity table="InterventionEffectivenessRatingType" />
+  </Aggregate>
+
+
+  <Aggregate name="ItemCategoryTypes" root="ItemCategoryType">
+    <Entity table="ItemCategoryType" />
+  </Aggregate>
+
+
+  <Aggregate name="LanguageDescriptors" root="LanguageDescriptor">
+    <Entity table="LanguageDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="LanguagesTypes" root="LanguagesType">
+    <Entity table="LanguagesType" />
+  </Aggregate>
+
+
+  <Aggregate name="LEACategoryTypes" root="LEACategoryType">
+    <Entity table="LEACategoryType" />
+  </Aggregate>
+
+
+  <Aggregate name="LeaveEventCategoryTypes" root="LeaveEventCategoryType">
+    <Entity table="LeaveEventCategoryType" />
+  </Aggregate>
+
+
+  <Aggregate name="LevelDescriptors" root="LevelDescriptor">
+    <Entity table="LevelDescriptor" isA="Descriptor" />
+    <Entity table="LevelDescriptorGradeLevel" />
+    <!-- TODO: Review with Ed/Silvia (instead of GradeLevelType) -->
+  </Aggregate>
+
+
+  <Aggregate name="MagnetSpecialProgramEmphasisSchoolTypes" root="MagnetSpecialProgramEmphasisSchoolType">
+    <Entity table="MagnetSpecialProgramEmphasisSchoolType" />
+  </Aggregate>
+
+
+  <Aggregate name="MediumOfInstructionTypes" root="MediumOfInstructionType">
+    <Entity table="MediumOfInstructionType" />
+  </Aggregate>
+
+
+  <Aggregate name="MeetingDaysTypes" root="MeetingDaysType">
+    <Entity table="MeetingDaysType" />
+  </Aggregate>
+
+
+  <Aggregate name="MethodCreditEarnedTypes" root="MethodCreditEarnedType">
+    <Entity table="MethodCreditEarnedType" />
+  </Aggregate>
+
+
+  <Aggregate name="NetworkPurposeTypes" root="NetworkPurposeType">
+    <Entity table="NetworkPurposeType" />
+  </Aggregate>
+
+
+  <Aggregate name="OldEthnicityTypes" root="OldEthnicityType">
+    <Entity table="OldEthnicityType" />
+  </Aggregate>
+
+
+  <Aggregate name="OperationalStatusTypes" root="OperationalStatusType">
+    <Entity table="OperationalStatusType" />
+  </Aggregate>
+
+
+  <Aggregate name="OtherNameTypes" root="OtherNameType">
+    <Entity table="OtherNameType" />
+  </Aggregate>
+
+
+  <Aggregate name="PerformanceBaseTypes" root="PerformanceBaseType">
+    <Entity table="PerformanceBaseType" />
+  </Aggregate>
+
+
+  <Aggregate name="PerformanceLevelDescriptors" root="PerformanceLevelDescriptor">
+    <Entity table="PerformanceLevelDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+  <!-- TODO: Removed in 1.2 
+  <Aggregate name="PersonalInformationVerificationTypes" root="PersonalInformationVerificationType">
+    <Entity table="PersonalInformationVerificationType" />
+  </Aggregate>
+-->
+
+  <Aggregate name="PopulationServedTypes" root="PopulationServedType">
+    <Entity table="PopulationServedType" />
+  </Aggregate>
+
+
+  <Aggregate name="PostingResultTypes" root="PostingResultType">
+    <Entity table="PostingResultType" />
+  </Aggregate>
+
+
+  <Aggregate name="PostSecondaryEventCategoryTypes" root="PostSecondaryEventCategoryType">
+    <Entity table="PostSecondaryEventCategoryType" />
+  </Aggregate>
+
+
+  <Aggregate name="ProgramSponsorTypes" root="ProgramSponsorType">
+    <Entity table="ProgramSponsorType" />
+  </Aggregate>
+
+
+  <Aggregate name="ProgramTypes" root="ProgramType">
+    <Entity table="ProgramType" />
+  </Aggregate>
+
+
+  <Aggregate name="PublicationStatusTypes" root="PublicationStatusType">
+    <Entity table="PublicationStatusType" />
+  </Aggregate>
+
+
+  <Aggregate name="RaceTypes" root="RaceType">
+    <Entity table="RaceType" />
+  </Aggregate>
+
+
+  <Aggregate name="ReasonNotTestedTypes" root="ReasonNotTestedType">
+    <Entity table="ReasonNotTestedType" />
+  </Aggregate>
+
+
+  <Aggregate name="RecognitionTypes" root="RecognitionType">
+    <Entity table="RecognitionType" />
+  </Aggregate>
+
+
+  <Aggregate name="RelationTypes" root="RelationType">
+    <Entity table="RelationType" />
+  </Aggregate>
+
+
+  <Aggregate name="RepeatIdentifierTypes" root="RepeatIdentifierType">
+    <Entity table="RepeatIdentifierType" />
+  </Aggregate>
+
+
+  <Aggregate name="ResponseIndicatorTypes" root="ResponseIndicatorType">
+    <Entity table="ResponseIndicatorType" />
+  </Aggregate>
+
+
+  <Aggregate name="RestraintEventReasonsTypes" root="RestraintEventReasonsType">
+    <Entity table="RestraintEventReasonsType" />
+  </Aggregate>
+
+
+  <Aggregate name="ResultDatatypeTypes" root="ResultDatatypeType">
+    <Entity table="ResultDatatypeType" />
+  </Aggregate>
+
+
+  <Aggregate name="RetestIndicatorTypes" root="RetestIndicatorType">
+    <Entity table="RetestIndicatorType" />
+  </Aggregate>
+
+
+  <Aggregate name="SchoolCategoryTypes" root="SchoolCategoryType">
+    <Entity table="SchoolCategoryType" />
+  </Aggregate>
+
+
+  <Aggregate name="SchoolTypes" root="SchoolType">
+    <Entity table="SchoolType" />
+  </Aggregate>
+
+
+  <Aggregate name="SchoolYearTypes" root="SchoolYearType">
+    <Entity table="SchoolYearType" />
+  </Aggregate>
+
+
+  <Aggregate name="SeparationTypes" root="SeparationType">
+    <Entity table="SeparationType" />
+  </Aggregate>
+
+
+  <Aggregate name="ServiceDescriptors" root="ServiceDescriptor">
+    <Entity table="ServiceDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="SexTypes" root="SexType">
+    <Entity table="SexType" />
+  </Aggregate>
+
+
+  <Aggregate name="StaffIdentificationSystemTypes" root="StaffIdentificationSystemType">
+    <Entity table="StaffIdentificationSystemType" />
+  </Aggregate>
+
+
+  <Aggregate name="StateAbbreviationTypes" root="StateAbbreviationType">
+    <Entity table="StateAbbreviationType" />
+  </Aggregate>
+
+
+  <Aggregate name="StudentCharacteristicTypes" root="StudentCharacteristicType">
+    <Entity table="StudentCharacteristicType" />
+  </Aggregate>
+
+
+  <Aggregate name="StudentIdentificationSystemTypes" root="StudentIdentificationSystemType">
+    <Entity table="StudentIdentificationSystemType" />
+  </Aggregate>
+
+
+  <Aggregate name="StudentParticipationCodeTypes" root="StudentParticipationCodeType">
+    <Entity table="StudentParticipationCodeType" />
+  </Aggregate>
+
+
+  <Aggregate name="TeachingCredentialBasisTypes" root="TeachingCredentialBasisType">
+    <Entity table="TeachingCredentialBasisType" />
+  </Aggregate>
+
+
+  <Aggregate name="TelephoneNumberTypes" root="TelephoneNumberType">
+    <Entity table="TelephoneNumberType" />
+  </Aggregate>
+
+
+  <Aggregate name="TermTypes" root="TermType">
+    <Entity table="TermType" />
+  </Aggregate>
+
+
+  <Aggregate name="TitleIPartAParticipantTypes" root="TitleIPartAParticipantType">
+    <Entity table="TitleIPartAParticipantType" />
+  </Aggregate>
+
+
+  <Aggregate name="TitleIPartASchoolDesignationTypes" root="TitleIPartASchoolDesignationType">
+    <Entity table="TitleIPartASchoolDesignationType" />
+  </Aggregate>
+
+
+  <Aggregate name="WeaponDescriptors" root="WeaponDescriptor">
+    <Entity table="WeaponDescriptor" isA="Descriptor" />
+  </Aggregate>
+
+
+  <Aggregate name="WeaponTypes" root="WeaponType">
+    <Entity table="WeaponType" />
+  </Aggregate>
+</Aggregates>
