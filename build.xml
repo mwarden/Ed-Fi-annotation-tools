@@ -1,0 +1,119 @@
+<project default="build">
+	
+	<!-- properties -->
+	<property name="infile" value="..\DLP-EdFiTeam\Ed-Fi-Core\Ed-Fi-Standard\Schemas\Ed-Fi-Core.xsd" />
+
+	
+	<target name="help" description="Displays help information.">
+		<echo>
+		This build file processes a the Ed-Fi-Core XSD file to 
+		generate a number of reports from the metadata.
+		
+		
+		</echo>
+		
+	</target>
+	
+	
+	<target name="extract-groups" description="Output a list of types by type group (Domain Entity, Association, etc.)">
+	
+		<antcall target="-process-xslt">
+			<param name="fileprefix" value="Ed-Fi-Core-Type-Groups"/>
+		</antcall>
+	
+	</target>
+	
+	<target name="extract-descriptor-refs" description="Output a list of descriptor references">
+	
+		<antcall target="-process-xslt">
+			<param name="fileprefix" value="Ed-Fi-Core-Descriptor-References"/>
+		</antcall>
+	
+	</target>
+	
+	<target name="build" description="Process all extract targets.">
+		
+		<echo message="* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"/>
+		<echo message="                                                            *"/>
+		<echo message="                ED-FI CORE ANNOTATION TOOLS                 *"/>
+		<echo message="                        version 1.0                         *"/>
+		<echo message="                                                            *"/>
+		<echo message=" Use `ant help` without quotes to get additional help text  *"/>
+		<echo message="                                                            *"/>
+		<echo message="* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"/>
+		<echo/>
+		<echo/>
+		<echo message="Beginning build..."/>
+		
+		
+		<antcall target="-init"/>
+		<antcall target="-check-input-file"/>
+		
+		<antcall target="extract-groups"/>
+		<antcall target="extract-descriptor-refs"/>
+
+	</target>
+	
+
+	<target name="clean" description="Deletes output files and any intermediary files.">
+		<antcall target="-delete-output-file"/>
+	</target>
+
+
+
+
+
+
+
+
+	<!-- ========================== PRIVATE TARGETS ========================== -->
+	
+	<target name="-init">
+		<tstamp>
+			<format property="TODAY_FULL_FORMAT" pattern="MMMM, d YYYY"/>
+		</tstamp>
+	
+	</target>
+
+
+	<target name="-process-xslt">
+		<echo level="info" message="Processing ${infile} with stylesheet ${fileprefix}.xsl to produce ${fileprefix}.out..."/>
+		<xslt 
+			style="${fileprefix}.xsl" 
+			in="${infile}" 
+			out="${fileprefix}.out"
+			force="true" />
+		
+    </target>
+
+
+
+	<target name="-check-input-file">
+		<echo level="info" message="Checking if input file ${infile} exists..."/>
+		<available file="${infile}" property="infile.present"/>
+		
+		<antcall target="-input-file-not-exists"/>
+	</target>
+	
+
+	<target name="-input-file-not-exists" unless="infile.present">
+		<echo level="error">
+		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		!!!!!                                                   !!!!!
+		!!!!!         ERROR: Input file does not exist!         !!!!!
+		!!!!!                                                   !!!!!
+		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+		Input file: ${infile}
+		</echo>
+	</target>
+
+
+	<target name="-delete-output-file">
+		<delete verbose="true">
+			<fileset dir="." includes="*.out"/>
+		</delete>
+	</target>
+
+
+</project>

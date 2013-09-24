@@ -1,0 +1,320 @@
+ ==== DESCRIPTOR USAGE ==== 
+
+AcademicSubjectDescriptor (11):
+	Assessment.AcademicSubject
+	AssessmentFamily.AcademicSubject
+	Cohort.AcademicSubject
+	Course.SubjectArea
+	LearningObjective.AcademicSubject
+	LearningStandard.SubjectArea
+	OpenStaffPosition.AcademicSubjects
+	CredentialFieldDescriptor.AcademicSubject
+	TeacherSchoolAssociation.AcademicSubjects
+	AssessmentIdentityType.AcademicSubject
+	CreditsBySubject.SubjectArea
+
+
+AccommodationDescriptor (1):
+	StudentAssessment.Accommodation
+
+
+AccountCodeDescriptor (1):
+	Account.AccountCodes
+
+
+AchievementCategoryDescriptor (0):
+
+
+AdministrativeFundingControlDescriptor (1):
+	School.AdministrativeFundingControl
+
+
+AssessmentPeriodDescriptor (2):
+	Assessment.AssessmentPeriod
+	AssessmentFamily.AssessmentPeriods
+
+
+AttendanceEventCategoryDescriptor (1):
+	AttendanceEvent.AttendanceEventCategory
+
+
+BehaviorDescriptor (2):
+	DisciplineIncident.Behaviors
+	StudentDisciplineIncidentAssociation.Behaviors
+
+
+CalendarEventDescriptor (1):
+	CalendarDate.CalendarEvent
+
+
+ClassroomPositionDescriptor (1):
+	TeacherSectionAssociation.ClassroomPosition
+
+
+CompetencyLevelDescriptor (3):
+	Course.CompetencyLevels
+	StudentCompetency.CompetencyLevel
+	StudentGradebookEntry.CompetencyLevel
+
+
+ContinuationOfServicesReasonDescriptor (1):
+	StudentMigrantEducationProgramAssociation.ContinuationOfServicesReason
+
+
+CredentialFieldDescriptor (1):
+	Credential.CredentialField
+
+
+DiagnosisDescriptor (2):
+	InterventionPrescription.Diagnosis
+	InterventionEffectiveness.Diagnosis
+
+
+DisabilityDescriptor (1):
+	Disability.Disability
+
+
+DisciplineDescriptor (1):
+	DisciplineAction.Disciplines
+
+
+EmploymentStatusDescriptor (3):
+	OpenStaffPosition.EmploymentStatus
+	StaffEducationOrgEmploymentAssociation.EmploymentStatus
+	StaffEducationOrgEmploymentAssociationIdentityType.EmploymentStatus
+
+
+EntryTypeDescriptor (1):
+	StudentSchoolAssociation.EntryType
+
+
+ExitWithdrawTypeDescriptor (1):
+	StudentSchoolAssociation.ExitWithdrawType
+
+
+GradeLevelDescriptor (23):
+	Assessment.GradeLevelAssessed
+	Assessment.LowestGradeLevelAssessed
+	AssessmentFamily.GradeLevelAssessed
+	AssessmentFamily.LowestGradeLevelAssessed
+	BellScheduleMeetingTime.GradeLevels
+	Course.GradesOffered
+	CourseTranscript.GradeLevelWhenTaken
+	EducationContent.GradeLevelAppropriateness
+	InterventionPrescription.GradeLevelAppropriateness
+	InterventionStudy.GradeLevels
+	LearningObjective.ObjectiveGradeLevel
+	LearningStandard.GradeLevel
+	OpenStaffPosition.InstructionalGradeLevels
+	School.GradesOffered
+	StudentAssessment.GradeLevelWhenAssessed
+	StudentCompetencyObjective.ObjectiveGradeLevel
+	StudentSchoolAssociation.EntryGradeLevel
+	TeacherSchoolAssociation.InstructionalGradeLevels
+	AssessmentIdentityType.GradeLevelAssessed
+	BellScheduleMeetingTimeIdentityType.GradeLevels
+	EducationContentIdentityType.GradeLevelAppropriateness
+	CreditsByCourse.GradeLevel
+	InterventionEffectiveness.GradeLevel
+
+
+GradingPeriodDescriptor (2):
+	GradingPeriod.GradingPeriod
+	GradingPeriodIdentityType.GradingPeriod
+
+
+GraduationPlanTypeDescriptor (2):
+	GraduationPlan.GraduationPlanType
+	GraduationPlanIdentityType.GraduationPlanType
+
+
+LanguageDescriptor (6):
+	Assessment.Languages
+	AssessmentFamily.Languages
+	EducationContent.Languages
+	Section.InstructionLanguage
+	StudentAssessment.AdministrationLanguage
+	EducationContentIdentityType.Languages
+
+
+LimitedEnglishProficiencyDescriptor (2):
+	Student.LimitedEnglishProficiency
+	Student.Languages
+
+
+LevelDescriptor (1):
+	Credential.Level
+
+
+LevelOfEducationDescriptor (1):
+	Staff.HighestLevelOfEducationCompleted
+
+
+PerformanceLevelDescriptor (3):
+	StudentAssessment.PerformanceLevels
+	StudentObjectiveAssessment.PerformanceLevels
+	AssessmentPerformanceLevel.PerformanceLevel
+
+
+ProgramAssignmentDescriptor (2):
+	OpenStaffPosition.ProgramAssignment
+	TeacherSchoolAssociation.ProgramAssignment
+
+
+ProgramCharacteristicDescriptor (2):
+	Program.ProgramCharacteristic
+	ProgramParticipation.ProgramCharacteristic
+
+
+ReasonExitedDescriptor (2):
+	StudentProgramAssociation.ReasonExited
+	StudentSpecialEdProgramAssociation.ReasonExitedSpecialEducation
+
+
+ReporterDescriptionDescriptor (1):
+	DisciplineIncident.ReporterDescription
+
+
+ResidencyStatusDescriptor (1):
+	StudentSchoolAssociation.ResidencyStatus
+
+
+ResponsibilityDescriptor (1):
+	StudentEducationOrganizationAssociation.Responsibility
+
+
+SchoolFoodServiceEligibilityDescriptor (1):
+	Student.SchoolFoodServicesEligibility
+
+
+SectionCharacteristicsDescriptor (1):
+	Section.SectionCharacteristics
+
+
+SeparationReasonDescriptor (1):
+	EmploymentPeriod.SeparationReason
+
+
+ServiceDescriptor (2):
+	Program.Services
+	StudentProgramAssociation.Services
+
+
+SpecialEducationSettingDescriptor (1):
+	StudentSpecialEdProgramAssociation.SpecialEducationSetting
+
+
+StaffClassificationDescriptor (2):
+	OpenStaffPosition.StaffClassification
+	StaffEducationOrgAssignmentAssociation.StaffClassification
+
+
+TeachingCredentialTypeDescriptor (1):
+	Credential.TeachingCredentialType
+
+
+WeaponDescriptor (1):
+	DisciplineIncident.Weapons
+
+
+
+
+
+
+ ==== DESCRIPTOR REFERENCE RESOLUTION ==== 
+
+Account.AccountCodes                                                            --> AccountCodeDescriptor
+Assessment.AcademicSubject                                                      --> AcademicSubjectDescriptor
+Assessment.GradeLevelAssessed                                                   --> GradeLevelDescriptor
+Assessment.LowestGradeLevelAssessed                                             --> GradeLevelDescriptor
+Assessment.Languages                                                            --> LanguageDescriptor
+Assessment.AssessmentPeriod                                                     --> AssessmentPeriodDescriptor
+AssessmentFamily.AcademicSubject                                                --> AcademicSubjectDescriptor
+AssessmentFamily.GradeLevelAssessed                                             --> GradeLevelDescriptor
+AssessmentFamily.LowestGradeLevelAssessed                                       --> GradeLevelDescriptor
+AssessmentFamily.Languages                                                      --> LanguageDescriptor
+AssessmentFamily.AssessmentPeriods                                              --> AssessmentPeriodDescriptor
+AttendanceEvent.AttendanceEventCategory                                         --> AttendanceEventCategoryDescriptor
+BellScheduleMeetingTime.GradeLevels                                             --> GradeLevelDescriptor
+CalendarDate.CalendarEvent                                                      --> CalendarEventDescriptor
+Cohort.AcademicSubject                                                          --> AcademicSubjectDescriptor
+Course.GradesOffered                                                            --> GradeLevelDescriptor
+Course.SubjectArea                                                              --> AcademicSubjectDescriptor
+Course.CompetencyLevels                                                         --> CompetencyLevelDescriptor
+CourseTranscript.GradeLevelWhenTaken                                            --> GradeLevelDescriptor
+DisciplineAction.Disciplines                                                    --> DisciplineDescriptor
+DisciplineIncident.ReporterDescription                                          --> ReporterDescriptionDescriptor
+DisciplineIncident.Weapons                                                      --> WeaponDescriptor
+EducationContent.GradeLevelAppropriateness                                      --> GradeLevelDescriptor
+EducationContent.Languages                                                      --> LanguageDescriptor
+GradingPeriod.GradingPeriod                                                     --> GradingPeriodDescriptor
+GraduationPlan.GraduationPlanType                                               --> GraduationPlanTypeDescriptor
+InterventionPrescription.Diagnosis                                              --> DiagnosisDescriptor
+InterventionPrescription.GradeLevelAppropriateness                              --> GradeLevelDescriptor
+InterventionStudy.GradeLevels                                                   --> GradeLevelDescriptor
+LearningObjective.AcademicSubject                                               --> AcademicSubjectDescriptor
+LearningObjective.ObjectiveGradeLevel                                           --> GradeLevelDescriptor
+LearningStandard.GradeLevel                                                     --> GradeLevelDescriptor
+LearningStandard.SubjectArea                                                    --> AcademicSubjectDescriptor
+OpenStaffPosition.EmploymentStatus                                              --> EmploymentStatusDescriptor
+OpenStaffPosition.StaffClassification                                           --> StaffClassificationDescriptor
+OpenStaffPosition.ProgramAssignment                                             --> ProgramAssignmentDescriptor
+OpenStaffPosition.InstructionalGradeLevels                                      --> GradeLevelDescriptor
+OpenStaffPosition.AcademicSubjects                                              --> AcademicSubjectDescriptor
+Program.ProgramCharacteristic                                                   --> ProgramCharacteristicDescriptor
+Program.Services                                                                --> ServiceDescriptor
+School.GradesOffered                                                            --> GradeLevelDescriptor
+School.AdministrativeFundingControl                                             --> AdministrativeFundingControlDescriptor
+Section.SectionCharacteristics                                                  --> SectionCharacteristicsDescriptor
+Section.InstructionLanguage                                                     --> LanguageDescriptor
+Staff.HighestLevelOfEducationCompleted                                          --> LevelOfEducationDescriptor
+Student.SchoolFoodServicesEligibility                                           --> SchoolFoodServiceEligibilityDescriptor
+Student.LimitedEnglishProficiency                                               --> LimitedEnglishProficiencyDescriptor
+StudentAssessment.AdministrationLanguage                                        --> LanguageDescriptor
+StudentAssessment.Accommodation                                                 --> AccommodationDescriptor
+StudentAssessment.GradeLevelWhenAssessed                                        --> GradeLevelDescriptor
+StudentAssessment.PerformanceLevels                                             --> PerformanceLevelDescriptor
+StudentCompetency.CompetencyLevel                                               --> CompetencyLevelDescriptor
+StudentCompetencyObjective.ObjectiveGradeLevel                                  --> GradeLevelDescriptor
+StudentGradebookEntry.CompetencyLevel                                           --> CompetencyLevelDescriptor
+StudentObjectiveAssessment.PerformanceLevels                                    --> PerformanceLevelDescriptor
+CredentialFieldDescriptor.AcademicSubject                                       --> AcademicSubjectDescriptor
+StaffEducationOrgAssignmentAssociation.StaffClassification                      --> StaffClassificationDescriptor
+StaffEducationOrgEmploymentAssociation.EmploymentStatus                         --> EmploymentStatusDescriptor
+StudentMigrantEducationProgramAssociation.ContinuationOfServicesReason          --> ContinuationOfServicesReasonDescriptor
+StudentEducationOrganizationAssociation.Responsibility                          --> ResponsibilityDescriptor
+StudentProgramAssociation.Services                                              --> ServiceDescriptor
+StudentProgramAssociation.ReasonExited                                          --> ReasonExitedDescriptor
+StudentSchoolAssociation.EntryGradeLevel                                        --> GradeLevelDescriptor
+StudentSchoolAssociation.EntryType                                              --> EntryTypeDescriptor
+StudentSchoolAssociation.ExitWithdrawType                                       --> ExitWithdrawTypeDescriptor
+StudentSchoolAssociation.ResidencyStatus                                        --> ResidencyStatusDescriptor
+StudentSpecialEdProgramAssociation.SpecialEducationSetting                      --> SpecialEducationSettingDescriptor
+StudentSpecialEdProgramAssociation.ReasonExitedSpecialEducation                 --> ReasonExitedDescriptor
+TeacherSchoolAssociation.ProgramAssignment                                      --> ProgramAssignmentDescriptor
+TeacherSchoolAssociation.InstructionalGradeLevels                               --> GradeLevelDescriptor
+TeacherSchoolAssociation.AcademicSubjects                                       --> AcademicSubjectDescriptor
+TeacherSectionAssociation.ClassroomPosition                                     --> ClassroomPositionDescriptor
+DescriptorType.PriorDescriptor                                                  --> 
+AssessmentIdentityType.AcademicSubject                                          --> AcademicSubjectDescriptor
+AssessmentIdentityType.GradeLevelAssessed                                       --> GradeLevelDescriptor
+BellScheduleMeetingTimeIdentityType.GradeLevels                                 --> GradeLevelDescriptor
+EducationContentIdentityType.GradeLevelAppropriateness                          --> GradeLevelDescriptor
+EducationContentIdentityType.Languages                                          --> LanguageDescriptor
+GradingPeriodIdentityType.GradingPeriod                                         --> GradingPeriodDescriptor
+GraduationPlanIdentityType.GraduationPlanType                                   --> GraduationPlanTypeDescriptor
+StaffEducationOrgEmploymentAssociationIdentityType.EmploymentStatus             --> EmploymentStatusDescriptor
+Achievement.AchievementCategory                                                 --> 
+AssessmentPerformanceLevel.PerformanceLevel                                     --> PerformanceLevelDescriptor
+Credential.CredentialField                                                      --> CredentialFieldDescriptor
+Credential.Level                                                                --> LevelDescriptor
+Credential.TeachingCredentialType                                               --> TeachingCredentialTypeDescriptor
+CreditsByCourse.GradeLevel                                                      --> GradeLevelDescriptor
+CreditsBySubject.SubjectArea                                                    --> AcademicSubjectDescriptor
+Disability.Disability                                                           --> DisabilityDescriptor
+EmploymentPeriod.SeparationReason                                               --> SeparationReasonDescriptor
+InterventionEffectiveness.Diagnosis                                             --> DiagnosisDescriptor
+InterventionEffectiveness.GradeLevel                                            --> GradeLevelDescriptor
+ProgramParticipation.ProgramCharacteristic                                      --> ProgramCharacteristicDescriptor
+
+
