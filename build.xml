@@ -1,7 +1,8 @@
 <project default="build">
 	
 	<!-- properties -->
-	<property name="infile" value="..\DLP-EdFiTeam\Ed-Fi-Core\Ed-Fi-Standard\Schemas\Ed-Fi-Core.xsd" />
+	<property name="edfi-xsd" value="..\DLP-EdFiTeam\Ed-Fi-Core\Ed-Fi-Standard\Schemas\Ed-Fi-Core.xsd" />
+	<property name="domain-aggregate-xml" value=".\DomainMetadata.xml" />
 
 	
 	<target name="help" description="Displays help information.">
@@ -18,6 +19,8 @@
 	<target name="extract-groups" description="Output a list of types by type group (Domain Entity, Association, etc.)">
 	
 		<antcall target="-process-xslt">
+			<param name="infile" value="${edfi-xsd}"/>
+			<param name="out-ext" value="out"/>
 			<param name="fileprefix" value="Ed-Fi-Core-Type-Groups"/>
 		</antcall>
 	
@@ -26,7 +29,29 @@
 	<target name="extract-descriptor-refs" description="Output a list of descriptor references">
 	
 		<antcall target="-process-xslt">
+			<param name="infile" value="${edfi-xsd}"/>
+			<param name="out-ext" value="out"/>
 			<param name="fileprefix" value="Ed-Fi-Core-Descriptor-References"/>
+		</antcall>
+	
+	</target>
+
+	<target name="extract-domain-aggregates" description="Output a list of domain aggregates">
+	
+		<antcall target="-process-xslt">
+			<param name="infile" value="${domain-aggregate-xml}"/>
+			<param name="out-ext" value="out"/>
+			<param name="fileprefix" value="Alphabetic-Listing-of-Domain-Entities"/>
+		</antcall>
+	
+	</target>
+
+	<target name="extract-domain-aggregates-html" description="Output a html table report of domain aggregates">
+	
+		<antcall target="-process-xslt">
+			<param name="infile" value="${domain-aggregate-xml}"/>
+			<param name="out-ext" value="html"/>
+			<param name="fileprefix" value="Alphabetic-Html-Listing-of-Domain-Aggregates"/>
 		</antcall>
 	
 	</target>
@@ -51,6 +76,8 @@
 		
 		<antcall target="extract-groups"/>
 		<antcall target="extract-descriptor-refs"/>
+		<antcall target="extract-domain-aggregates"/>
+		<antcall target="extract-domain-aggregates-html"/>
 
 	</target>
 	
@@ -77,11 +104,11 @@
 
 
 	<target name="-process-xslt">
-		<echo level="info" message="Processing ${infile} with stylesheet ${fileprefix}.xsl to produce ${fileprefix}.out..."/>
+		<echo level="info" message="Processing ${infile} with stylesheet ${fileprefix}.xsl to produce ${fileprefix}.${out-ext}..."/>
 		<xslt 
 			style="${fileprefix}.xsl" 
 			in="${infile}" 
-			out="${fileprefix}.out"
+			out="${fileprefix}.${out-ext}"
 			force="true" />
 		
     </target>
@@ -89,14 +116,14 @@
 
 
 	<target name="-check-input-file">
-		<echo level="info" message="Checking if input file ${infile} exists..."/>
-		<available file="${infile}" property="infile.present"/>
+		<echo level="info" message="Checking if input file ${edfi-xsd} exists..."/>
+		<available file="${edfi-xsd}" property="edfi-xsd.present"/>
 		
 		<antcall target="-input-file-not-exists"/>
 	</target>
 	
 
-	<target name="-input-file-not-exists" unless="infile.present">
+	<target name="-input-file-not-exists" unless="edfi-xsd.present">
 		<echo level="error">
 		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		!!!!!                                                   !!!!!
@@ -104,7 +131,7 @@
 		!!!!!                                                   !!!!!
 		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
-		Input file: ${infile}
+		Input file: ${edfi-xsd}
 		</echo>
 	</target>
 
